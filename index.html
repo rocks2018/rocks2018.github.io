@@ -284,7 +284,6 @@ details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointe
 <h2 class="h2" style="margin-top:14px">Every season.<br><span class="outline">Every robot.</span></h2>
 <div class="years" role="tablist" aria-label="Seasons" id="years"></div>
 <div class="stage" id="stage" aria-live="polite"></div>
-<div class="histwrap"><p class="lbl">Season history · SPACE ROCKS 15303 · 2018 to 2027</p><div class="hist" id="hist"></div></div>
 <div class="act">
 <div class="lbl" style="grid-column:1/-1">Active season · 2026–2027 <span class="tag">● LIVE</span></div>
 <div class="row"><span>Robot</span><span class="ph">set status</span></div>
@@ -462,21 +461,16 @@ const yrs=document.getElementById('years'),stage=document.getElementById('stage'
 SEASONS.forEach((s,i)=>{const b=document.createElement('button');b.className='yr';b.role='tab';b.textContent=s.y;b.onclick=()=>pick(i);b.onkeydown=e=>{if(e.key==='ArrowRight')pick(Math.min(i+1,SEASONS.length-1),1);if(e.key==='ArrowLeft')pick(Math.max(i-1,0),1)};yrs.appendChild(b)});
 const ph=t=>`<span class="ph">${t}</span>`;
 function tpl(s){const D=DET[s.y]||{},rg=rng(s.y);
-if(s.active)return `<article class="tpl"><h3 class="tt">Season ${rg} | Current season</h3><h4>Status</h4><p>${D.status}</p><h4>Awards</h4><p>N/A</p></article>`;
+if(s.active)return `<article class="tpl"><h4>Status</h4><p>${D.status}</p><h4>Awards</h4><p>N/A</p></article>`;
 const q=encodeURIComponent('FTC '+D.yt);
-return `<article class="tpl"><h3 class="tt">Season ${rg} | Game: ${s.g.toUpperCase()}</h3>
-<h4>Robot &amp; Engineering Design</h4><p>${D.rob}</p>
+return `<article class="tpl"><h4>Robot &amp; Engineering Design</h4><p>${D.rob}</p>
 ${D.out.length?`<h4>Season Outreach &amp; Impact</h4><ul>${D.out.map(o=>`<li><b>${o[0]}:</b> ${o[1]}</li>`).join('')}</ul>`:''}
 <h4>Competition Accomplishments</h4><ul>${D.comp.map(c=>`<li>${c}</li>`).join('')}</ul>
 <h4>Awards</h4>${D.aw.length?'<ul>'+D.aw.map(a=>`<li>${a}</li>`).join('')+'</ul>':'<p>N/A</p>'}
 <h4>Media &amp; Highlights</h4><ul><li><b>Videos &amp; Highlights:</b> <a class="ul" style="color:var(--pink)" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">Search YouTube: ${D.yt}</a></li></ul></article>`}
 function pick(i,focus){const s=SEASONS[i];[...yrs.children].forEach((b,j)=>{b.setAttribute('aria-selected',i===j);b.tabIndex=i===j?0:-1});if(focus)yrs.children[i].focus();
 document.getElementById('seasons').style.background=`hsl(${335+i*3},85%,${97-i}%)`;
-stage.innerHTML=`<div class="swap"><div class="yrbig">${s.y}</div><div class="game">${s.g}</div>${s.active?'<p class="lbl tag" style="margin-top:14px">Active season</p>':''}</div><div class="swap">${tpl(s)}</div>`;
-document.querySelectorAll('#hist .hrow').forEach((r,j)=>r.classList.toggle('on',SEASONS.length-1-j===i))}
-const hist=document.getElementById('hist');
-hist.innerHTML=SEASONS.slice().reverse().map((q,k)=>`<button class="hrow" data-i="${SEASONS.length-1-k}"><span class="hy">${rng(q.y)}</span><b>${q.g}</b><span class="ht">${q.t}</span></button>`).join('');
-hist.querySelectorAll('.hrow').forEach(r=>r.onclick=()=>{pick(+r.dataset.i);document.getElementById('years').scrollIntoView({block:'center'})});
+stage.innerHTML=`<div class="swap"><div class="yrbig">${s.y}</div><div class="game">${s.g}</div>${s.active?'<p class="lbl tag" style="margin-top:14px">Active season</p>':''}</div><div class="swap">${tpl(s)}</div>`;}
 pick(SEASONS.length-1);
 /* ===== lists ===== */
 const tl=(id,a)=>document.getElementById(id).innerHTML=a.map(n=>`<div><h3>${n.t}</h3><p>${n.p}</p></div>`).join('');
