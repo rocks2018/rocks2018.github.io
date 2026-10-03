@@ -35,13 +35,13 @@ body>header{position:fixed;inset:0 0 auto;z-index:70;mix-blend-mode:normal;backg
 #bg{display:block;flex:none;white-space:nowrap;background:none;border:1px solid var(--line);color:#fff;padding:6px 12px;cursor:pointer;font:700 .75rem var(--body);letter-spacing:.14em}
 @media(max-width:860px){.menu{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--bg);padding:24px;border-bottom:1px solid var(--line);gap:18px}.menu.open{display:flex}}
 /* hero */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(104px,16vh,150px) 0 60px;overflow:hidden}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(76px,10vh,96px) 0 48px;overflow:hidden}
 #orbit{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 #hero .wrap{position:relative;z-index:1;width:100%}
 .meta{display:flex;gap:28px;flex-wrap:wrap;margin:26px 0}
 .meta div{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}.meta b{display:block;color:var(--ink)}
-#hero .big{transition:transform .2s;position:relative;z-index:1;padding-top:.14em}
-#hero .wrap>.lbl{position:relative;z-index:3;display:block;margin:0 0 clamp(20px,3.2vw,36px)}
+#hero .big{transition:transform .2s;position:relative;z-index:1;padding-top:.06em}
+#hero .wrap>.lbl{position:relative;z-index:3;display:block;margin:0 0 clamp(12px,1.8vw,20px)}
 .grad{background:linear-gradient(90deg,var(--pink),var(--blush),var(--berry));-webkit-background-clip:text;background-clip:text;color:transparent}
 .marq{overflow:hidden;background:var(--pink);padding:14px 0;margin-top:70px;white-space:nowrap}
 .marq div{display:inline-block;animation:mq 30s linear infinite;font:300 1.6rem var(--disp);letter-spacing:.1em;color:#fff}
@@ -97,7 +97,7 @@ dt{font:600 .72rem var(--body);letter-spacing:.18em;text-transform:uppercase;col
 @media(max-width:560px){.stage dl div{grid-template-columns:1fr;gap:4px}}
 .tpl h3.tt{font:300 clamp(1.5rem,3.4vw,2.2rem)/1.1 var(--disp);margin-bottom:6px}.tpl h4{font:600 .72rem var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin:26px 0 8px;padding-top:14px;border-top:1px solid var(--line)}.tpl p,.tpl li{color:#5c3a4d}.tpl ul{list-style:none;display:grid;gap:8px}.tpl li b{color:var(--ink);font-weight:600}.teamwide{margin-top:30px}.teamwide dl div{grid-template-columns:150px 1fr}@media(max-width:560px){.teamwide dl div{grid-template-columns:1fr;gap:4px}}
 /* sponsors */
-.sp{display:grid;grid-template-columns:100px 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:center}
+.sp{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:center}
 .sp em{font:300 1.1rem var(--disp);letter-spacing:.1em;font-style:normal}
 .sp span{color:var(--mut)}.sp b{font:300 2rem var(--disp);}
 .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -432,11 +432,11 @@ h.addEventListener('pointermove',set);h.addEventListener('touchmove',set,{passiv
 const tr=document.getElementById('troph'),to=document.getElementById('toast'),tb=tr.querySelector('.tb'),tip=tr.querySelector('.tip');let tt,tier=0;
 const TIERS=[
 {m:0,n:'Bronze Trophy',c:'#b06f3c',b:'linear-gradient(135deg,#f0d6bb,#b06f3c)'},
-{m:50,n:'Silver Trophy',c:'#9aa3ad',b:'linear-gradient(135deg,#ffffff,#9aa3ad)'},
-{m:100,n:'Gold Trophy',c:'#c9a227',b:'linear-gradient(135deg,#fff3bd,#c9a227)'},
-{m:250,n:'Diamond Trophy',c:'#2fb7dc',b:'linear-gradient(135deg,#eafcff,#5fd0ee)'},
-{m:500,n:'Stellar Trophy',c:'#e6007e',b:'linear-gradient(135deg,#ffd6ec,#e6007e)'},
-{m:1000,n:'Cosmic Trophy',c:'#7b3fe4',b:'linear-gradient(120deg,#e6007e,#7b3fe4,#2bd4ff,#e6007e)'}];
+{m:500,n:'Silver Trophy',c:'#9aa3ad',b:'linear-gradient(135deg,#ffffff,#9aa3ad)'},
+{m:1000,n:'Gold Trophy',c:'#c9a227',b:'linear-gradient(135deg,#fff3bd,#c9a227)'},
+{m:2500,n:'Diamond Trophy',c:'#2fb7dc',b:'linear-gradient(135deg,#eafcff,#5fd0ee)'},
+{m:5000,n:'Stellar Trophy',c:'#e6007e',b:'linear-gradient(135deg,#ffd6ec,#e6007e)'},
+{m:10000,n:'Cosmic Trophy',c:'#7b3fe4',b:'linear-gradient(120deg,#e6007e,#7b3fe4,#2bd4ff,#e6007e)'}];
 const tierOf=v=>{let k=0;TIERS.forEach((t,i)=>{if(v>=t.m)k=i});return k};
 function showTier(v,flash){const k=tierOf(v),t=TIERS[k],nx=TIERS[k+1];
 tr.style.setProperty('--tc',t.c);tr.style.setProperty('--tbg',t.b);tr.classList.toggle('t5',k===5);
